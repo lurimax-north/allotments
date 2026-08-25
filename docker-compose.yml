@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: allotments
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  web:
+    build: .
+    #command: run "python manage.py runserver 0.0.0.0:8000"
+    develop:
+      watch:
+        - action: sync
+          path: ./allotments
+          target: /app
+          ignore:
+            - .venv/
+        - action: rebuild
+          path: pyproject.toml
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+volumes:
+  postgres_data:
