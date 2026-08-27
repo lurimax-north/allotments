@@ -1,6 +1,14 @@
 ## Building
 `docker compose build`
 
+## Migrating the database
+
+`docker compose up migrate`
+
+## Creating migrations
+
+`docker compose up makemigrations
+
 ## Running
 
 `docker compose up`

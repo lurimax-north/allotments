@@ -11,10 +11,10 @@ services:
       - postgres_data:/var/lib/postgresql/data
   web:
     build: .
-    #command: run "python manage.py runserver 0.0.0.0:8000"
+    image: &img allotments
     develop:
       watch:
-        - action: sync
+        - action: sync+restart
           path: ./allotments
           target: /app
           ignore:
@@ -25,5 +25,25 @@ services:
       - "8000:8000"
     depends_on:
       - db
+  makemigrations:
+    image: &img allotments
+    command: ["uv", "run", "python", "allotments/manage.py", "makemigrations"]
+    profiles:
+      - makemigrations
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - web
+  migrate:
+    image: &img allotments
+    command: ["uv", "run", "python", "allotments/manage.py", "migrate"]
+    profiles:
+      - migrate
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - web
 volumes:
   postgres_data:
