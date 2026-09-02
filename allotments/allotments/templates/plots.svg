@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   id="plot-map"
+   class="plot-map"
+   width="100%"
+   viewBox="0 0 930 900"
+   role="img"
+   aria-label="Allotment plot map">
+  <style>
+    .site { fill: #c5b8a9; stroke: #d1c09a; stroke-width: 2; }
+    .column-band { fill: #c5b8a9; stroke: #d1c09a; stroke-width: 2; }
+    .column-label { fill: #4a4036; font-size: 28px; font-weight: 700; text-anchor: end; dominant-baseline: central; }
+    .plot-shape rect { fill: #71614d; stroke: #d1c09a; stroke-width: 2; }
+    .plot-shape text { fill: #ffffff; font-size: 48px; font-weight: 700; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  </style>
+  <rect class="site" width="930" height="900"/>
+
+  <!-- Top band: plots 1 to 6 -->
+  <rect class="column-band" x="158" y="28" width="744" height="244" rx="8"/>
+  <text class="column-label" x="138" y="150">1-6</text>
+  <g class="plot-shape" id="plot-1" tabindex="0" role="button" aria-label="Plot 1">
+    <rect x="780" y="40" width="110" height="220" rx="6"/>
+    <text x="835" y="150">1</text>
+  </g>
+  <g class="plot-shape" id="plot-2" tabindex="0" role="button" aria-label="Plot 2">
+    <rect x="658" y="40" width="110" height="220" rx="6"/>
+    <text x="713" y="150">2</text>
+  </g>
+  <g class="plot-shape" id="plot-3" tabindex="0" role="button" aria-label="Plot 3">
+    <rect x="536" y="40" width="110" height="220" rx="6"/>
+    <text x="591" y="150">3</text>
+  </g>
+  <g class="plot-shape" id="plot-4" tabindex="0" role="button" aria-label="Plot 4">
+    <rect x="414" y="40" width="110" height="220" rx="6"/>
+    <text x="469" y="150">4</text>
+  </g>
+  <g class="plot-shape" id="plot-5" tabindex="0" role="button" aria-label="Plot 5">
+    <rect x="292" y="40" width="110" height="220" rx="6"/>
+    <text x="347" y="150">5</text>
+  </g>
+  <g class="plot-shape" id="plot-6" tabindex="0" role="button" aria-label="Plot 6">
+    <rect x="170" y="40" width="110" height="220" rx="6"/>
+    <text x="225" y="150">6</text>
+  </g>
+
+  <!-- Middle band: plots 7 to 12 -->
+  <rect class="column-band" x="158" y="328" width="744" height="244" rx="8"/>
+  <text class="column-label" x="138" y="450">7-12</text>
+  <g class="plot-shape" id="plot-7" tabindex="0" role="button" aria-label="Plot 7">
+    <rect x="780" y="340" width="110" height="220" rx="6"/>
+    <text x="835" y="450">7</text>
+  </g>
+  <g class="plot-shape" id="plot-8" tabindex="0" role="button" aria-label="Plot 8">
+    <rect x="658" y="340" width="110" height="220" rx="6"/>
+    <text x="713" y="450">8</text>
+  </g>
+  <g class="plot-shape" id="plot-9" tabindex="0" role="button" aria-label="Plot 9">
+    <rect x="536" y="340" width="110" height="220" rx="6"/>
+    <text x="591" y="450">9</text>
+  </g>
+  <g class="plot-shape" id="plot-10" tabindex="0" role="button" aria-label="Plot 10">
+    <rect x="414" y="340" width="110" height="220" rx="6"/>
+    <text x="469" y="450">10</text>
+  </g>
+  <g class="plot-shape" id="plot-11" tabindex="0" role="button" aria-label="Plot 11">
+    <rect x="292" y="340" width="110" height="220" rx="6"/>
+    <text x="347" y="450">11</text>
+  </g>
+  <g class="plot-shape" id="plot-12" tabindex="0" role="button" aria-label="Plot 12">
+    <rect x="170" y="340" width="110" height="220" rx="6"/>
+    <text x="225" y="450">12</text>
+  </g>
+
+  <!-- Bottom band: plots 13 to 18 -->
+  <rect class="column-band" x="158" y="628" width="744" height="244" rx="8"/>
+  <text class="column-label" x="138" y="750">13-18</text>
+  <g class="plot-shape" id="plot-13" tabindex="0" role="button" aria-label="Plot 13">
+    <rect x="780" y="640" width="110" height="220" rx="6"/>
+    <text x="835" y="750">13</text>
+  </g>
+  <g class="plot-shape" id="plot-14" tabindex="0" role="button" aria-label="Plot 14">
+    <rect x="658" y="640" width="110" height="220" rx="6"/>
+    <text x="713" y="750">14</text>
+  </g>
+  <g class="plot-shape" id="plot-15" tabindex="0" role="button" aria-label="Plot 15">
+    <rect x="536" y="640" width="110" height="220" rx="6"/>
+    <text x="591" y="750">15</text>
+  </g>
+  <g class="plot-shape" id="plot-16" tabindex="0" role="button" aria-label="Plot 16">
+    <rect x="414" y="640" width="110" height="220" rx="6"/>
+    <text x="469" y="750">16</text>
+  </g>
+  <g class="plot-shape" id="plot-17" tabindex="0" role="button" aria-label="Plot 17">
+    <rect x="292" y="640" width="110" height="220" rx="6"/>
+    <text x="347" y="750">17</text>
+  </g>
+  <g class="plot-shape" id="plot-18" tabindex="0" role="button" aria-label="Plot 18">
+    <rect x="170" y="640" width="110" height="220" rx="6"/>
+    <text x="225" y="750">18</text>
+  </g>
+</svg>

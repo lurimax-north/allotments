@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+{% block extra-css %}
+
+.message {
+    border: solid white;
+    border-radius: 1em;
+    padding: 1em;
+
+}
+
+.message-list-item {
+    list-style: none;
+}
+
+.comment-list-item {
+    list-style: none;
+
+}
+
+article > footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+small {
+    color: #888888;
+}
+.asteriskField {
+    display: none;
+}
+
+
+.hidden {
+
+    display: none;
+}
+{% endblock %}
+{% partialdef comment-partial %}
+    
+        
+            {{comment.comment}}
+         
+    
+            <div class="row justify-content-between">
+                <small class="col-4">{{ comment.created_by }}</small>
+                <small class="col-4">{{ comment.updated_at|naturaltime }}</small>
+            </div>
+    
+    
+{% endpartialdef %}
+    
+{% partialdef message-partial %}
+   <div class="card">
+   
+        <div class="card-header">
+            {{ message.message }}
+            <div class="row justify-content-between">
+                <small class="col-4">{{ message.created_by }}</small>
+                <small class="col-4">{{ message.updated_at|naturaltime }}</small>
+            </div>
+        </div>
+   
+    
+    {% if message.comments.all %}
+    <div class="card-body">
+        <ul class="list-group">
+            {% for comment in message.comments.all %}
+            <li class="list-group-item">
+            {% partial comment-partial %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <div class="card-footer">
+        <form action="{% url 'comment_create' %}" method="POST" class="row row-cols-lg-auto g-3 align-items-center">
+            {% csrf_token %}
+            <div class="col-8">
+                <label class="visually-hidden" for="commentInput">Comment</label>
+                <input type="text" class="form-control" id="commentInput" name="comment" placeholder="comment">
+                    
+            </div>
+            <div class="hidden">
+                <input type="text" value="{{ message.id }}" id="commentParentId" name="message">
+            </div>
+            <div class="col-4">
+            
+                <input type="submit" value="comment" class="btn btn-primary">
+            </div>
+        </form>
+        
+       
+    </div>
+    </div>
+<br>
+  
+    
+
+    
+{% endpartialdef %}
+
+
+
+{% block content %}
+
+    <h2>Post new message</h2>
+    <form action="{% url 'message_create' %}" method="POST">
+        {% csrf_token %}
+        {% crispy message_form %}
+    </form>
+<hr>
+<br/>
+
+    {% for message in message_list %}
+    <div>
+        {% partial message-partial %}
+    </div>
+  
+    {% endfor %}
+
+
+{% endblock %}

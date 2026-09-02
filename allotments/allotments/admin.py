@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from django.contrib.auth.admin import UserAdmin
-from .models import Plot, User
+from .models import Comment, Message, Plot, User
 
 # Register your models here.
 
@@ -18,4 +18,13 @@ class PlotAdmin(admin.ModelAdmin):
 @admin.register(User)
 class UserAdmin(UserAdmin):
     list_display = ['first_name', 'last_name','username', 'email', 'plot']
-    fieldsets = UserAdmin.fieldsets + (('allotment', {'fields': ('plot',)}), (None, {'fields': ('anonymous_username',)}),)
+    fieldsets = UserAdmin.fieldsets + (('allotment', {'fields': ('plot',)}), (None, {'fields': ('anonymous_username', "anonymous_user")}),)
+
+
+class CommentInline(admin.TabularInline):
+    model = Comment
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ["created_by", "created_at", "updated_at"]
+    inlines = [CommentInline]

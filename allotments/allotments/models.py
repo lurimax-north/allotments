@@ -38,5 +38,35 @@ class User(AbstractUser):
     plot = models.ForeignKey(Plot, on_delete=models.SET_NULL, null=True, blank=True, related_name='users')
     
     anonymous_username = models.CharField(max_length=100, default=make_anonymous_username)
+    anonymous_user = models.BooleanField(default=False)
+    def __str__(self):
+        if self.anonymous_user:
+            return self.anonymous_username
+        return f"{self.first_name} {self.last_name}"
 
+class Message(models.Model):
+    message = models.TextField()
+    title = models.CharField(max_length=100, null=True, blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='messages')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
+
+    def __str__(self):
+        return f"Message {self.pk} by {self.created_by.username}"
+    class Meta:
+        ordering = ['-created_at', "-id"]
+
+class Comment(models.Model):
+    comment = models.TextField()
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    message = models.ForeignKey(Message, on_delete=models.CASCADE, related_name='comments')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+    class Meta:
+        ordering = ['-created_at', '-id']
+
+    def __str__(self):
+        return f"Comment {self.pk} by {self.created_by.username} for message {self.message.pk}"

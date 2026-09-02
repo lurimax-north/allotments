@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra-css %}
+
+
+.plots-page,
+.plots-page .row,
+.plots-page .col {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.plot-map,
+#plot-map {
+    display: block;
+    width: 100%;
+    max-width: min(40rem, 100%);
+    height: auto;
+    margin-inline: auto;
+}
+
+.plot-map .site,
+.plot-map .column-band {
+    fill: #c5b8a9;
+    stroke: #d1c09a;
+    stroke-width: 2;
+}
+
+.plot-map .column-label {
+    fill: #4a4036;
+    font-size: 28px;
+    font-weight: 700;
+    text-anchor: end;
+    dominant-baseline: central;
+}
+
+.plot-shape {
+    cursor: pointer;
+}
+
+.plot-shape rect {
+    fill: #71614d;
+    stroke: #d1c09a;
+    stroke-width: 2;
+    transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+.plot-shape text {
+    fill: #ffffff;
+    font-size: 48px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: central;
+    pointer-events: none;
+    transition: fill 0.25s ease;
+}
+
+.plot-shape.occupied rect {
+    fill: #6f8f6a;
+    stroke: #4d6b48;
+}
+
+.plot-shape:hover rect,
+.plot-shape:focus rect {
+    fill: #3f7d54;
+    stroke: #2c5b3c;
+}
+
+.plot-shape:hover text,
+.plot-shape:focus text {
+    fill: #ffffff;
+}
+
+.plot-shape:focus {
+    outline: none;
+}
+
+.plot-detail {
+    display: none;
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.plot-detail.is-default {
+    display: block;
+}
+
+.plots-page:has(.plot-shape:hover) .plot-detail.is-default,
+.plots-page:has(.plot-shape:focus) .plot-detail.is-default {
+    display: none;
+}
+
+{% for plot in plots %}
+.plots-page:has(#plot-{{ forloop.counter }}:hover) #detail-{{ forloop.counter }},
+.plots-page:has(#plot-{{ forloop.counter }}:focus) #detail-{{ forloop.counter }} {
+    display: block;
+}
+{% endfor %}
+
+
+{% endblock %}
+
+{% block content %}
+<div class="plots-page">
+    <div class="row"  style="margin-top: 3em; margin-bottom: 3em;">
+    <div class="col">
+        <div class="plot-detail is-default">
+            <p>Hover a plot to see who tends it.</p>
+        </div>
+        {% for plot in plots %}
+        <div class="plot-detail" id="detail-{{ forloop.counter }}">
+            <h2>Plot {{ forloop.counter }}</h2>
+            {% if plot.users.all %}
+            <ul>
+                {% for user in plot.users.all %}
+                <li>{{ user }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Unoccupied</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+    <div class="row  justify-content-center">
+<div class="col">
+    
+    {% include "plots.svg" %}
+    </div>
+</div>
+</div>
+{% endblock %}

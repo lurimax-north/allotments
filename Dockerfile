@@ -39,9 +39,8 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
-
 # Use the non-root user to run our application
-
+#USER nonroot
 # Run the FastAPI application by default
 # Uses `uv run` to sync dependencies on startup, respecting UV_NO_DEV
 # Uses `fastapi dev` to enable hot-reloading when the `watch` sync occurs
